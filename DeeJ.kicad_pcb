@@ -6175,7 +6175,6 @@
   (footprint "TestPoint:Test point 2.5x1.5" (layer "F.Cu")
     (tstamp e2bbdb81-5c4c-40e5-a83d-800da71b1088)
     (at 0 -0.025)
-    (attr smd)
     (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS")
         (effects (font (size 1 1) (thickness 0.1)))
       (tstamp 1a70843d-88dc-49c2-af37-596024864dbd)
@@ -6190,6 +6189,11 @@
     )
     (pad "1" smd rect (at 0 -2.25) (size 2.5 1.5) (layers "F.Cu" "F.Paste" "F.Mask")
       (thermal_bridge_angle 45) (tstamp 0100f892-e63f-4355-a290-ba0bc629a54c))
+    (model "${KICAD7_3DMODEL_DIR}/3Dmalli/DeeJ.step"
+      (offset (xyz 0 0 9))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "Button_Switch_THT:SKHHCWA010" (layer "F.Cu")
