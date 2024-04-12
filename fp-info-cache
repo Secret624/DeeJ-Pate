@@ -1,4 +1,4 @@
-21624074578062414
+21636100531282563
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -580,6 +580,13 @@ SMD SMT SPST EVQPUM EVQPUD
 0
 4
 2
+Button_Switch_SMD
+SK-3296S-01
+
+
+0
+7
+4
 Button_Switch_SMD
 SW_DIP_SPSTx01_Slide_6.7x4.1mm_W6.73mm_P2.54mm_LowProfile_JPin
 SMD 1x-dip-switch SPST , Slide, row spacing 6.73 mm (264 mils), body size 6.7x4.1mm (see e.g. https://www.ctscorp.com/wp-content/uploads/219.pdf), SMD, LowProfile, JPin
@@ -53424,7 +53431,35 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 10
 10
 Enclosure
+1551K
+
+
+0
+0
+0
+Enclosure
+1551KBK
+
+
+0
+0
+0
+Enclosure
 1590B
+
+
+0
+0
+0
+Enclosure
+1591XXGBK
+
+
+0
+0
+0
+Enclosure
+1591XXMBK
 
 
 0
@@ -59688,6 +59723,13 @@ solder jumper open
 0
 5
 3
+LED_SMD
+67-21ST-RKE-NXXXX34Z15-SZM-2T
+
+
+0
+2
+2
 LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
@@ -72976,6 +73018,13 @@ EQFP QFP
 145
 Package_QFP
 ESP32-S3-WROOM-1
+
+
+0
+49
+41
+Package_QFP
+ESP32-S3-WROOM-1U
 
 
 0
