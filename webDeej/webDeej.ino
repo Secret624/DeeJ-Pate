@@ -1,3 +1,5 @@
+#include <WiFi.h>
+#include <WebServer.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -15,10 +17,14 @@
 #define encoderSW 18
 #define debounce 50
 
+const char* ssid = "";
+const char* password = "";
+
+WebServer server(80);
 Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-const int NUM_SLIDERS = 6;
-int analogSliderValues[NUM_SLIDERS];
+const int numSliders = 6;
+int sliderValues[numSliders] = {0};
 
 volatile int state = 0;
 volatile int roll = 0;
@@ -31,8 +37,8 @@ void IRAM_ATTR encSW() {
   if ((millis() - last_time) < debounce)
     return;
   state++;
-  if(state > (NUM_SLIDERS - 1)){state = 0;}
-  roll = analogSliderValues[state];
+  if(state > (numSliders - 1)){state = 0;}
+  roll = sliderValues[state];
   last_time = millis();
 }
 void IRAM_ATTR encRollCW() {
@@ -41,7 +47,7 @@ void IRAM_ATTR encRollCW() {
   if (digitalRead(encoderCCW == HIGH) && roll > 0){
     roll = roll - 16;
   }
-  analogSliderValues[state] = roll;
+  sliderValues[state] = roll;
   last_time = millis();
 }
 void IRAM_ATTR encRollCCW() {
@@ -50,17 +56,17 @@ void IRAM_ATTR encRollCCW() {
   if (digitalRead(encoderCW == HIGH) && roll < 1023){
     roll = roll + 16;
   }
-  analogSliderValues[state] = roll;
+  sliderValues[state] = roll;
   last_time = millis();
 }
 
 void sendSliderValues() {
   String builtString = String("");
 
-  for (int i = 0; i < NUM_SLIDERS; i++) {
-    builtString += String((int)analogSliderValues[i]);
+  for (int i = 0; i < numSliders; i++) {
+    builtString += String((int)sliderValues[i]);
 
-    if (i < NUM_SLIDERS - 1) {
+    if (i < numSliders - 1) {
       builtString += String("|");
     }
   }
@@ -68,23 +74,38 @@ void sendSliderValues() {
   Serial.println(builtString);
 }
 
-void printSliderValues() {
-  for (int i = 0; i < NUM_SLIDERS; i++) {
-    String printedString = String("Slider #") + String(i + 1) + String(": ") + String(analogSliderValues[i]) + String(" mV");
-    Serial.write(printedString.c_str());
-
-    if (i < NUM_SLIDERS - 1) {
-      Serial.write(" | ");
-    } else {
-      Serial.write("\n");
-    }
+void handleRoot() {
+  String content = "<html><head><title>DeeJ</title></head><body>";
+  content += "<h1>DeeJ</h1>";
+  content += "<form action=\"/set\" method=\"get\">";
+  for (int i = 0; i < numSliders; i++) {
+    content += "Channel " + String(i) + ": <input type=\"range\" name=\"slider" + String(i) + "\" min=\"0\" max=\"1023\" value=\"" + String(sliderValues[i]) + "\"><br>";
   }
+  content += "<input type=\"submit\" value=\"Set\">";
+  content += "</form></body></html>";
+  
+  server.send(200, "text/html", content);
+}
+
+void handleSet() {
+  for (int i = 0; i < numSliders; i++) {
+    sliderValues[i] = server.arg("slider" + String(i)).toInt();
+  }
+  
+  String message = "Settings saved:<br>";
+  for (int i = 0; i < numSliders; i++) {
+    message += "Slider " + String(i+1) + ": " + String(sliderValues[i]) + "<br>";
+  }
+
+  server.sendHeader("Location", "/", true);
+  server.send(302, "text/plain", "");
 }
 
 void setup() {
-  esp_task_wdt_init(WDT_TIMEOUT, true); //enable panic so ESP32 restarts
-  esp_task_wdt_add(NULL); //add current thread to WDT watch
-
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  esp_task_wdt_init(WDT_TIMEOUT, true);
+  esp_task_wdt_add(NULL);
   pinMode(encoderCW, INPUT);
   pinMode(encoderCCW, INPUT);
 
@@ -97,11 +118,19 @@ void setup() {
   if (!oled.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     while (1);
   }
-
   delay(2000);
 
-  Serial.begin(115200);
-  esp_task_wdt_reset();
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi..");
+  }
+  
+  Serial.println("Connected to WiFi");
+
+  server.on("/", handleRoot);
+  server.on("/set", handleSet);
+
+  server.begin();
 
   oled.clearDisplay();
   oled.setTextColor(WHITE);
@@ -111,7 +140,7 @@ void setup() {
 void loop() {
   oled.clearDisplay();
   oled.setCursor(0, 4);
-  for (int i = 0; i < NUM_SLIDERS; i++){
+  for (int i = 0; i < numSliders; i++){
     if (state == i){
       oled.print("--");
     } else{
@@ -120,10 +149,13 @@ void loop() {
     oled.print("Channel ");
     oled.print(i);
     oled.print(" vol ");
-    oled.println(analogSliderValues[i]);
+    oled.println(sliderValues[i]);
   }
+  oled.print("IP:");
+  oled.println(WiFi.localIP());
   oled.display(); //reeee
-  
+
+  esp_task_wdt_reset();
+  server.handleClient();
   sendSliderValues();
-  esp_task_wdt_reset(); //remember to feed the dogs
 }
