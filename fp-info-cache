@@ -1,4 +1,4 @@
-21636100531282563
+21655002560723412
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -1595,6 +1595,13 @@ DTS-644K-V
 0
 4
 2
+Button_Switch_THT
+K6-6133D
+
+
+0
+8
+8
 Button_Switch_THT
 KSA_Tactile_SPST
 KSA http://www.ckswitches.com/media/1457/ksa_ksl.pdf
@@ -49748,6 +49755,13 @@ Vigortronix VTX-214-010-xxx serie of ACDC converter
 0
 5
 5
+Converter_ACDC
+HI-LINK HLK-15M12C
+
+
+0
+4
+4
 Converter_DCDC
 Converter_DCDC_Artesyn_ATA_SMD
 DCDC-Converter, Artesyn, ATA Series, 3W Single and Dual Output, 1500VDC Isolation, 24.0x13.7x8.0mm https://www.artesyn.com/power/assets/ata_series_ds_01apr2015_79c25814fd.pdf https://www.artesyn.com/power/assets/trn_dc-dc_ata_3w_series_releas1430412818_techref.pdf
@@ -53424,6 +53438,13 @@ SP420281N
 12
 12
 Display_7Segment
+SR440281N
+
+
+0
+12
+12
+Display_7Segment
 Sx39-1xxxxx
 Single digit 7 segment LED display in red, yellow or green colour http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf
 One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
@@ -53460,6 +53481,13 @@ Enclosure
 0
 Enclosure
 1591XXMBK
+
+
+0
+0
+0
+Enclosure
+FIX-SF-664
 
 
 0
@@ -57029,6 +57057,13 @@ inductor TDK VLS SMD VLS6045EF VLS6045AF
 2
 2
 Inductor_SMD
+L_TDK_VLS6045EX_VLS6045AF_handsolder
+Inductor,TDK, VLS-6045, 6x6x4.5mm, https://product.tdk.com/system/files/dam/doc/product/inductor/inductor/smd/catalog/inductor_commercial_power_vls6045ex_en.pdf
+inductor TDK VLS SMD VLS6045EF VLS6045AF
+0
+2
+2
+Inductor_SMD
 L_TaiTech_TMPC1265_13.5x12.5mm
 Tai Tech TMPC1265 series SMD inductor https://datasheet.lcsc.com/lcsc/2009171439_TAI-TECH-TMPC1265HP-100MG-D_C305223.pdf, 13.5x12.5x6.2mm
 Tai Tech TMPC1265 SMD inductor
@@ -57672,6 +57707,13 @@ wurth wuerth smd inductor
 0
 2
 2
+Inductor_SMD
+SER2918
+
+
+0
+3
+3
 Inductor_SMD_Wurth
 L_Wurth_WE-LQSH-2010
 Semi-Shielded High Saturation Power Inductor, body 2x1.6mm, https://www.we-online.com/catalog/en/WE-LQSH#/articles/WE-LQSH-2010
@@ -59577,6 +59619,13 @@ THT
 4
 2
 Jumper
+0603SPDT
+
+
+0
+3
+3
+Jumper
 SolderJumper-2_P1.3mm_Bridged2Bar_Pad1.0x1.5mm
 SMD Solder Jumper, 1x1.5mm Pads, 0.3mm gap, bridged with 2 copper strips
 net tie solder jumper bridged
@@ -59731,6 +59780,13 @@ LED_SMD
 2
 2
 LED_SMD
+Everlight 67-21S
+https://www.luckylight.cn/media/component/data-sheet/R2835BC-B2M-M10.pdf
+LED
+0
+2
+2
+LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
 LED RGB SPI
@@ -59741,6 +59797,13 @@ LED_SMD
 LED-L1T2_LUMILEDS
 http://www.lumileds.com/uploads/438/DS133-pdf
 LUMILEDS LUXEON TX L1T2 LED
+0
+3
+3
+LED_SMD
+LED5730
+
+
 0
 3
 3
@@ -60290,6 +60353,13 @@ LED
 0
 2
 2
+LED_SMD
+SK6812MINI-KA
+
+
+0
+6
+6
 LED_THT
 LED_BL-FL7680RGB
 'Piranha' RGB LED, through hole, common anode, 7.62x7.62mm, BGRA pin order, https://cdn-shop.adafruit.com/datasheets/BL-FL7680RGB.pdf
@@ -75054,6 +75124,13 @@ SSOP 3.9 4.9 1.00
 10
 10
 Package_SO
+SSOP-10_3.9x4.9mm_P1.00mm_EP_2.1x3.3
+10-Lead SSOP, 3.9 x 4.9mm body, 1.00mm pitch (http://www.st.com/resource/en/datasheet/viper01.pdf)
+SSOP 3.9 4.9 1.00
+0
+11
+11
+Package_SO
 SSOP-14_5.3x6.2mm_P0.65mm
 SSOP14: plastic shrink small outline package; 14 leads; body width 5.3 mm; (see NXP SSOP-TSSOP-VSO-REFLOW.pdf and sot337-1_po.pdf)
 SSOP 0.65
@@ -80161,7 +80238,7 @@ RS45111A900F
 
 
 0
-3
+5
 3
 Potentiometer_THT
 UT right angle long pin
